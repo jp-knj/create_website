@@ -62,7 +62,18 @@
       <p class="footer_text footer_text__rigth js-footer_right">ICS MEDIA</p>
     </section>
     <script>
-      gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger);
+    document.addEventListener('DOMContentLoaded', function () {
+        const main = new Main();
+    });
+    class Main {
+        constructor() {
+            this.DOM = {};
+            console.log("Hello JavaScript")
+        }
+        init() {
+        }
+    }
 
       // 上のスクロールインジケーター
       const barTl = gsap.timeline({
@@ -73,7 +84,7 @@
           scrub: true,
         },
       });
-      barTl.fromTo(".header-line_inner", { width: 0 }, { width: "100%" });
+      barTl.fromTo(".header__inner", { width: 0 }, { width: "100%" });
 
       //トップの画像パララックス
       const topTl  = gsap.timeline({
