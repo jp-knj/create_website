@@ -7,6 +7,46 @@
     <title>Document</title>
 </head>
 <body>
-    <p>Hello World</p>
+	<header class="header">
+		<div class="header__logo">Logo</div>
+		<nav class="header__navigation">
+			<ul class="navigation">
+				<li class="navigation__item"><a class="navigation__link">Reviews</a></li>
+				<li class="navigation__item"><a class="navigation__link">About</a></li>
+				<li class="navigation__item"><a class="navigation__link">Contact</a></li>
+			</ul>
+		</nav>
+		<div class="content">
+			<div class="section">
+				<div class="title-small">Our intro</div>
+				<div class="title-large">Our Big Title</div>
+				<div class="text">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ex
+					sunt itaque hic reprehenderit.
+				</div>
+				<button class="button">Get started</button>
+			</div>
+			<div class="showcase"></div>
+		</div>
+		<div class="bottom">
+			<div class="bottom-left">
+				<div class="count">01</div>
+				<div class="line-wrapper">
+					<div class="line"></div>
+				</div>
+				<div class="desc">
+					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos
+					temporibus, eligendi.
+				</div>
+			</div>
+			<div class="bottom-right"></div>
+		</div>
+		</div>
+		<script>
+			window.exampleApiUrl = "<%= htmlWebpackPlugin.options.data.apiContext %>";
+		</script>
+
+
+	</header>
 </body>
 </html>
