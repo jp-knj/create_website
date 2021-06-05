@@ -56,7 +56,7 @@
       <p class="footer_text footer_text__rigth js-footer_right">ICS MEDIA</p>
     </section>
     <script>
-    // gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger);
     document.addEventListener('DOMContentLoaded', function () {
         const main = new Main();
     });
@@ -67,11 +67,14 @@
             this.chars = this.DOM.title.innerHTML.trim().split("");
             this.DOM.title.innerHTML = this._splitText();
             this.DOM.chars = this.DOM.title.querySelectorAll('span');
+            this.DOM.cards = document.querySelectorAll(".card");
+            console.log(this.DOM.cards);
             this.init();
         }
         init(){
             this._progressBar();
             this._parallaxText();
+            this._animatedCard();
         }
         _progressBar() {
             const barTl = gsap.timeline({
@@ -111,43 +114,42 @@
                 duration: 1
             }, "topLabel");
         }
+        _animatedCard() {
+            this.DOM.cards.forEach((el) => {
+                const img = el.querySelector(".card_figure img");
+                const title = el.querySelector(".card_title");
+                const text = el.querySelector(".card_text");
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 80p%",
+                        end: `+=${window.innerHeight / 2}`,
+                        scrub: 1,
+                    },
+                });
+                tl.fromTo(
+                    title,
+                    { y: 50 },
+                    {
+                        y: 0,
+                        ease: "none",
+                        duration: 1,
+                    },
+                );
+                tl.fromTo(
+                    text,
+                    { y: 50 },
+                    {
+                        y: 0,
+                        ease: "none",
+                        duration: 1,
+                    },
+                    "<"
+                );
+                tl.to(img, { scale: 1.2, ease: "none", duration: 2 }, "-=0.5");
+            });
+        }
     }
-
-
-      // カード
-      document.querySelectorAll(".card").forEach((el) => {
-        const img = el.querySelector(".card_figure img");
-        const title = el.querySelector(".card_title");
-        const text = el.querySelector(".card_text");
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: el,
-            start: "top 80p%",
-            end: `+=${window.innerHeight / 2}`,
-            scrub: 1,
-          },
-        });
-        tl.fromTo(
-          title,
-          { y: 50 },
-          {
-            y: 0,
-            ease: "none",
-            duration: 1,
-          },
-        );
-        tl.fromTo(
-          text,
-          { y: 50 },
-          {
-            y: 0,
-            ease: "none",
-            duration: 1,
-          },
-          "<"
-        );
-        tl.to(img, { scale: 1.2, ease: "none", duration: 2 }, "-=0.5");
-      });
 
       // 下部
 
