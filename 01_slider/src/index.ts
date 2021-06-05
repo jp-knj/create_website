@@ -1,2 +1,2 @@
-import "../sass/style.scss";
+import "../sass/main.scss";
 console.log("Hello TypeScript");
