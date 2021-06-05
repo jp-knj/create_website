@@ -69,22 +69,23 @@
     class Main {
         constructor() {
             this.DOM = {};
-            console.log("Hello JavaScript")
+            this.init();
         }
-        init() {
+        init(){
+            this._progressBar();
+        }
+        _progressBar() {
+            const barTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "body",
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: true,
+                },
+            });
+            barTl.fromTo(".header__inner", { width: 0 }, { width: "100%" });
         }
     }
-
-      // 上のスクロールインジケーター
-      const barTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: "body",
-          start: "top top",
-          end: "bottom bottom",
-          scrub: true,
-        },
-      });
-      barTl.fromTo(".header__inner", { width: 0 }, { width: "100%" });
 
       //トップの画像パララックス
       const topTl  = gsap.timeline({
