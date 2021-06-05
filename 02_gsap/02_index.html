@@ -76,6 +76,7 @@
             this._parallaxText();
             this._animatedCard();
             this._makeDark();
+            this._slideText();
         }
         _progressBar() {
             const barTl = gsap.timeline({
@@ -157,34 +158,29 @@
                 toggleClass: "is-crossed",
             });
         }
-        _makeDark() {
-            ScrollTrigger.create({
-                trigger: ".footer",
-                start: "top 50%",
-                toggleClass: "is-crossed",
+        _slideText() {
+            const bottomTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".footer",
+                    start: "top bottom",
+                    end: "center center",
+                    scrub: 0,
+                },
             });
+            bottomTl
+                .fromTo(
+                    ".js-footer_left",
+                    { xPercent: -100, },
+                    { xPercent: 0 }
+                )
+                .fromTo(
+                    ".js-footer_right",
+                    { xPercent: 100, },
+                    { xPercent: 0 },
+                    "<"
+                );
         }
     }
-      const bottomTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".footer",
-          start: "top bottom",
-          end: "center center",
-          scrub: 0,
-        },
-      });
-      bottomTl
-        .fromTo(
-          ".js-footer_left",
-          {xPercent: -100,},
-          { xPercent: 0 }
-        )
-        .fromTo(
-          ".js-footer_right",
-          {xPercent: 100,},
-          { xPercent: 0 },
-          "<"
-        );
     </script>
   </body>
 </html>
