@@ -68,13 +68,14 @@
             this.DOM.title.innerHTML = this._splitText();
             this.DOM.chars = this.DOM.title.querySelectorAll('span');
             this.DOM.cards = document.querySelectorAll(".card");
-            console.log(this.DOM.cards);
+
             this.init();
         }
         init(){
             this._progressBar();
             this._parallaxText();
             this._animatedCard();
+            this._makeDark();
         }
         _progressBar() {
             const barTl = gsap.timeline({
@@ -149,36 +150,38 @@
                 tl.to(img, { scale: 1.2, ease: "none", duration: 2 }, "-=0.5");
             });
         }
+        _makeDark(){
+            ScrollTrigger.create({
+                trigger: ".footer",
+                start: "top 50%",
+                toggleClass: "is-crossed",
+            });
+        }
+        _makeDark() {
+            ScrollTrigger.create({
+                trigger: ".footer",
+                start: "top 50%",
+                toggleClass: "is-crossed",
+            });
+        }
     }
-
-      // 下部
-
-      ScrollTrigger.create({
-        trigger: ".footer",
-        start: "top 50%",
-        toggleClass: "is-crossed",
-      });
       const bottomTl = gsap.timeline({
         scrollTrigger: {
           trigger: ".footer",
           start: "top bottom",
           end: "center center",
-          scrub: 1,
+          scrub: 0,
         },
       });
       bottomTl
         .fromTo(
           ".js-footer_left",
-          {
-            xPercent: -100,
-          },
+          {xPercent: -100,},
           { xPercent: 0 }
         )
         .fromTo(
           ".js-footer_right",
-          {
-            xPercent: 100,
-          },
+          {xPercent: 100,},
           { xPercent: 0 },
           "<"
         );
