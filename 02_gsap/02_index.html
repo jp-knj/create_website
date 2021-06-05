@@ -17,13 +17,7 @@
     </div>
     <section class="top">
       <div class="top__image"></div>
-      <div class="top__title">
-        <span>T</span>
-        <span>i</span>
-        <span>t</span>
-        <span>l</span>
-        <span>e</span>
-      </div>
+      <div class="top__title">Title</div>
     </section>
     <section class="section">
       <div class="card">
@@ -62,17 +56,22 @@
       <p class="footer_text footer_text__rigth js-footer_right">ICS MEDIA</p>
     </section>
     <script>
-    gsap.registerPlugin(ScrollTrigger);
+    // gsap.registerPlugin(ScrollTrigger);
     document.addEventListener('DOMContentLoaded', function () {
         const main = new Main();
     });
     class Main {
         constructor() {
             this.DOM = {};
+            this.DOM.title = document.querySelector('.top__title');
+            this.chars = this.DOM.title.innerHTML.trim().split("");
+            this.DOM.title.innerHTML = this._splitText();
+            this.DOM.chars = this.DOM.title.querySelectorAll('span');
             this.init();
         }
         init(){
             this._progressBar();
+            this._parallaxText();
         }
         _progressBar() {
             const barTl = gsap.timeline({
@@ -85,31 +84,34 @@
             });
             barTl.fromTo(".header__inner", { width: 0 }, { width: "100%" });
         }
+        _splitText() {
+            return this.chars.reduce((acc, curr) => {
+                curr = curr.replace(/\s+/, '&nbsp;');
+                return `${acc}<span>${curr}</span>`;
+            }, "");
+        }
+        _parallaxText() {
+            const topTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".top",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: 1,
+                },
+            });
+            topTl.addLabel("topLabel")
+            this.DOM.chars.forEach((e, i) => {
+                topTl.to(e, {
+                    y: -100,
+                    duration: 0.5
+                }, `topLabel+=${i/ 30}`)
+            })
+            topTl.to(".top__image", {
+                backgroundPositionY: 100,
+                duration: 1
+            }, "topLabel");
+        }
     }
-
-      //トップの画像パララックス
-      const topTl  = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".top",
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
-      // ラベルについて https://greensock.com/docs/v3/GSAP/Timeline/addLabel()
-      // アニメーションの実行タイミングの基準点になります
-      topTl.addLabel("topLabel")
-      document.querySelectorAll(".top__title span").forEach((el, index) => {
-        console.log(el)
-        topTl.to(el, {
-          y: -50,
-          duration: 0.1
-        }, `topLabel+=${index / 20}`)
-      })
-      topTl.to(".top__image", {
-        backgroundPositionY: 50,
-        duration: 1
-      }, "topLabel");
 
 
       // カード
