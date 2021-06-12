@@ -1,0 +1,19 @@
+{
+  "name": "mask",
+  "version": "1.0.0",
+  "description": "learn to mask",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --port 3000 --open"
+  },
+  "author": "knj",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  },
+  "dependencies": {
+    "gsap": "^3.6.1",
+    "lodash.throttle": "^4.1.1",
+    "splitting": "^1.0.6"
+  }
+}
