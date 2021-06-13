@@ -17,22 +17,87 @@
   color: #ffffff;
 }
 
-.heading {
+/* Reset */
+.content a {
+  color: inherit;
+}
+
+.content ul {
+  list-style: none;
+}
+
+.content button {
+  border: none;
+  padding: 0.5rem;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 84rem;
+  margin: 0 auto;
+}
+
+/* Text */
+.hero__heading {
+  font-size: clamp(2rem, 8vw, 8rem);
+  line-height: 1.1;
+  font-weight: 900;
+  margin: 0;
+}
+
+.hero--primary .hero__heading {
   -webkit-text-stroke: 2px var(--primary);
   color: transparent;
-  filter: drop-shadow(0 0 .35rem var(--primary));
+  filter: drop-shadow(0 0 0.35rem var(--primary));
 }
 
-.hero--secondary {
-  --clip: circle(20% at 70%);
-  -webkit-clip-path: var(--clip);
-  clip-path: var(--clip);
-}
-
-.hero--secondary .heading {
-  background: radial-gradient(circle at center, white .11rem, transparent 0);
-  background-size: .4rem .4rem;
+.hero--secondary .hero__heading {
+  background: radial-gradient(circle at center, #ffffff 0.11rem, transparent 0);
+  background-size: 0.4rem 0.4rem;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* Hero */
+.hero {
+  --x: 50%;
+  --y: 50%;
+  min-height: 100vh;
+  padding: clamp(1rem, 2vw, 5rem);
+  display: flex;
+  align-items: center;
+}
+
+.hero--secondary {
+  --mask: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    black var(--maskSize1, 0%),
+    rgba(0, 0, 0, 0.1) calc(var(--maskSize1, 0%) + 0.1%),
+    transparent 0,
+    transparent var(--maskSize2, 0%),
+    rgba(0, 0, 0, 0.1) calc(var(--maskSize2, 0%) + 0.1%),
+    black var(--maskSize2, 0%),
+    rgba(0, 0, 0, 0.1) calc(var(--maskSize3, 0%) - 0.1%),
+    black var(--maskSize3, 0%),
+    rgba(0, 0, 0, 0.1) calc(var(--maskSize3, 0%) + 0.1%),
+    transparent 0
+  );
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: var(--gradientBg);
+  color: rgb(9, 14, 23);
+  -webkit-mask-image: var(--mask);
+  mask-image: var(--mask);
 }
