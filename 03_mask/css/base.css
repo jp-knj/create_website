@@ -1,0 +1,33 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: 16px;
+}
+
+body {
+    --cda-left: auto;
+    --cda-width: 300px;
+    --cda-right: 3rem;
+    --cda-bottom: 3rem;
+    --cda-top: auto;
+    --cda-text-align: right;
+    --cda-text-color: var(--color-text);
+    --footer-align: end;
+}
+
+body {
+	margin: 0;
+	--color-text: #fff;
+	--color-bg: #000;
+	--color-link: #5d4848;
+	--color-link-hover: #fff;
+	color: var(--color-text);
+	background-color: var(--color-bg);
+	font-family: Nunito, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
